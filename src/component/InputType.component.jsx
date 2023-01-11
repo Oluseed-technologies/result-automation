@@ -85,7 +85,11 @@ export const RadioInputComponent = ({
 export const FileInputComponent = ({ values }) => {
   const FILE_NUM = new Array(+values.subjectsNum).fill(0);
   const renderInput = FILE_NUM.map((data, index) => {
-    return <input key={index} multiple className="mb-3 p-2" type="file" />;
+    return (
+      <div key={index} className="my-3">
+        <input multiple className=" p-2" type="file" />
+      </div>
+    );
   });
   return <div className="mb-4">{renderInput}</div>;
 };

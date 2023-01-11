@@ -43,3 +43,8 @@ export const AcademicTerms = [
     value: "Third term",
   },
 ];
+
+const presentYear = new Date(Date.now()).getFullYear();
+export const Years = new Array(15).fill("").map((data, index) => {
+  return { id: index + 1, value: presentYear - index };
+});

@@ -9,6 +9,7 @@ import {
   AcademicTerms,
   AcademicSessions,
   GradingSystems,
+  Years,
 } from "./OptionValues.data";
 import { InputValues } from "./InputValues.data.jsx";
 import ButtonComponent from "../component/Button.component";
@@ -18,13 +19,9 @@ import UploadTemplate from "./UploadTemplate";
 const Register = ({ resultType }) => {
   const navigate = useNavigate();
   console.log(resultType);
-  const presentYear = new Date(Date.now()).getFullYear();
+
   const [values, setValues] = useState(InputValues);
   const [open, setOpen] = useState(false);
-
-  const years = new Array(15).fill("").map((data, index) => {
-    return { id: index + 1, value: presentYear - index };
-  });
 
   const HandleSubmit = (e) => {
     setOpen(true);
@@ -49,15 +46,18 @@ const Register = ({ resultType }) => {
           options={GradingSystems}
           title="Choose a Grading Model/System"
           values={values}
+          setValues={setValues}
         />
         <SelectComponent
           name="session"
-          options={years}
+          options={Years}
           title="Academic Session"
           values={values}
+          setValues={setValues}
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="class_name"
           placeholder="Enter the class name"
           type="text"
@@ -65,6 +65,7 @@ const Register = ({ resultType }) => {
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="studentsNo"
           placeholder="Enter the number of students"
           type="number"
@@ -72,6 +73,7 @@ const Register = ({ resultType }) => {
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="subjectsNum"
           placeholder="Enter the number of subjects"
           type="number"
@@ -79,6 +81,7 @@ const Register = ({ resultType }) => {
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="adminEmail"
           placeholder="Enter the email of the admin"
           type="email"
@@ -86,6 +89,7 @@ const Register = ({ resultType }) => {
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="teacherName"
           placeholder="Enter the name of the class teacher"
           type="text"
@@ -93,6 +97,7 @@ const Register = ({ resultType }) => {
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="headName"
           placeholder="Enter the name of head teacher"
           type="text"
@@ -100,12 +105,14 @@ const Register = ({ resultType }) => {
         />
         <SelectComponent
           values={values}
+          setValues={setValues}
           name="term"
           options={AcademicTerms}
           title="Term"
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="resumptionDate"
           placeholder="Enter the next resumption date"
           type="date"
@@ -113,6 +120,7 @@ const Register = ({ resultType }) => {
         />
         <InputComponent
           values={values}
+          setValues={setValues}
           name="institutionCode"
           placeholder="Enter your access code"
           type="number"

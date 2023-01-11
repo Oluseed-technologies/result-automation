@@ -36,7 +36,7 @@ const UploadTemplate = ({ open, setOpen, values }) => {
             <li
               onClick={SelectedTemplate}
               key={index}
-              className="p-3  hover:bg-blue-300 hover:text-white border-l-2 my-2 rounded-md list-none "
+              className="p-3  hover:bg-blue-300 hover:text-white border-l-2 my-4 rounded-md list-none "
             >
               {data.title}
             </li>
