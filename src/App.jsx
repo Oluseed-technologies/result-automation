@@ -2,7 +2,7 @@ import "./App.css";
 import Register from "./Form/Register";
 import Homepage from "./page/Home";
 import AnnualPage from "./page/Annual.page";
-import MidTermPage from "./page/midTerm.page";
+import MidTermPage from "./page/MidTerm.page";
 import TermlyPage from "./page/Termly.page";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
