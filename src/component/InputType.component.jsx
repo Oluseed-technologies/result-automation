@@ -4,7 +4,6 @@ export const SelectComponent = ({
   name,
   setValues,
   options,
-  Error,
 }) => {
   const renderOptions = options.map((data, index) => {
     return (
@@ -42,12 +41,11 @@ export const InputComponent = ({
   setValues,
   name,
   placeholder,
-  Error,
 }) => {
   return (
     <div className="flex  flex-col w-full my-2">
       <label className="mb-3 text-xl">{title}</label>
-      <tt className="text-red-400 font-black">{Error[name]}</tt>
+
       <input
         name={name}
         required
@@ -82,4 +80,12 @@ export const RadioInputComponent = ({
       />
     </div>
   );
+};
+
+export const FileInputComponent = ({ values }) => {
+  const FILE_NUM = new Array(+values.subjectsNum).fill(0);
+  const renderInput = FILE_NUM.map((data, index) => {
+    return <input key={index} multiple className="mb-3 p-2" type="file" />;
+  });
+  return <div className="mb-4">{renderInput}</div>;
 };

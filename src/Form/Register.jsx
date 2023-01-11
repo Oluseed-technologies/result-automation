@@ -1,42 +1,45 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import {
   InputComponent,
   SelectComponent,
   RadioInputComponent,
-} from "./InputType.component";
+} from "../component/InputType.component";
 import {
   AcademicTerms,
   AcademicSessions,
   GradingSystems,
 } from "./OptionValues.data";
 import { InputValues } from "./InputValues.data.jsx";
-import { ErrorValues } from "./ErrorValues.jsx";
-import ButtonComponent from "./Button.component";
-import ErrorHandler from "./Error.utils";
+import ButtonComponent from "../component/Button.component";
+import { motion } from "framer-motion";
+import UploadTemplate from "./UploadTemplate";
 
-const Register = () => {
+const Register = ({ resultType }) => {
+  const navigate = useNavigate();
+  console.log(resultType);
   const presentYear = new Date(Date.now()).getFullYear();
   const [values, setValues] = useState(InputValues);
-  const [Error, setError] = useState(ErrorValues);
+  const [open, setOpen] = useState(false);
 
   const years = new Array(15).fill("").map((data, index) => {
     return { id: index + 1, value: presentYear - index };
   });
 
   const HandleSubmit = (e) => {
+    setOpen(true);
     e.preventDefault();
-    ErrorHandler(Error, values, setError, ErrorValues);
-  };
-  const HandleToHome = (e) => {
-    e.preventDefault();
-
-    // window.scrollTop();
   };
 
   return (
-    <main className="flex items-center md:w-7/12 w-full px-4  mx-auto flex-col justify-center">
-      <h1 className="text-4xl my-2">Termly Result</h1>
-      <h4 className="text-semibold font-sans text-center">
+    <motion.main
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex items-center md:w-7/12 w-full px-4  mx-auto flex-col justify-center"
+    >
+      <h1 className="text-4xl font-nunito my-2">{resultType} Result</h1>
+      <h4 className="text-semibold font-nunito text-center">
         Accurately Provide The Following Information <br /> For Your School And
         Particular Class.
       </h4>
@@ -46,21 +49,15 @@ const Register = () => {
           options={GradingSystems}
           title="Choose a Grading Model/System"
           values={values}
-          Error={Error}
-          setValues={setValues}
         />
         <SelectComponent
           name="session"
           options={years}
           title="Academic Session"
           values={values}
-          Error={Error}
-          setValues={setValues}
         />
         <InputComponent
           values={values}
-          setValues={setValues}
-          Error={Error}
           name="class_name"
           placeholder="Enter the class name"
           type="text"
@@ -68,8 +65,6 @@ const Register = () => {
         />
         <InputComponent
           values={values}
-          setValues={setValues}
-          Error={Error}
           name="studentsNo"
           placeholder="Enter the number of students"
           type="number"
@@ -77,35 +72,27 @@ const Register = () => {
         />
         <InputComponent
           values={values}
-          setValues={setValues}
-          Error={Error}
           name="subjectsNum"
           placeholder="Enter the number of subjects"
           type="number"
           title="Number of Subjects"
         />
         <InputComponent
-          Error={Error}
           values={values}
-          setValues={setValues}
           name="adminEmail"
           placeholder="Enter the email of the admin"
           type="email"
           title="Email of Admin"
         />
         <InputComponent
-          Error={Error}
           values={values}
-          setValues={setValues}
           name="teacherName"
           placeholder="Enter the name of the class teacher"
           type="text"
           title="Name of Class Teacher"
         />
         <InputComponent
-          Error={Error}
           values={values}
-          setValues={setValues}
           name="headName"
           placeholder="Enter the name of head teacher"
           type="text"
@@ -113,24 +100,19 @@ const Register = () => {
         />
         <SelectComponent
           values={values}
-          setValues={setValues}
           name="term"
           options={AcademicTerms}
           title="Term"
         />
         <InputComponent
-          Error={Error}
           values={values}
-          setValues={setValues}
           name="resumptionDate"
           placeholder="Enter the next resumption date"
           type="date"
           title="Next Term Resumption Date"
         />
         <InputComponent
-          Error={Error}
           values={values}
-          setValues={setValues}
           name="institutionCode"
           placeholder="Enter your access code"
           type="number"
@@ -144,13 +126,17 @@ const Register = () => {
           <ButtonComponent
             bgcolor="bg-red-500"
             hover="hover:bg-red-800"
-            ClickHandler={HandleToHome}
+            ClickHandler={() => navigate("/")}
             title="Back to Home"
           />
-          <ButtonComponent ClickHandler={HandleSubmit} title="Submit" />
+          <ButtonComponent
+            ClickHandler={HandleSubmit}
+            title="Submit & continue"
+          />
         </section>
       </form>
-    </main>
+      <UploadTemplate values={values} open={open} setOpen={setOpen} />
+    </motion.main>
   );
 };
 export default Register;

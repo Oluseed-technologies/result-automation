@@ -1,6 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;1,500&family=Poppins:wght@400;500;600&family=Rubik:wght@300;400;500;600;700&family=STIX+Two+Text:wght@400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 12.5px;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+.font-nunito {
+  font-family: "Nunito", sans-serif;
+}
+
+.font-rubik {
+  font-family: "Rubik", sans-serif;
+}
+.font-stt {
+  font-family: "STIX Two Text", serif;
 }
